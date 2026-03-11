@@ -44,3 +44,14 @@ pnpm dlx shadcn@latest init --monorepo
 - **單一 Next.js 專案** → 用 `next dev --turbopack`，享受更快的編譯速度。  
 - **Monorepo 專案 (例如同時有前端、後端、UI library)** → 用 `turbo dev`，讓 Turborepo 幫你協調各 package 的開發流程。  
 
+
+# echo-tutorial\packages 的使用方式
+```
+echo-tutorial\packages\math\package.json 引用了共用的 echo-tutorial\packages\typescript-config package，
+所以需要用 packages 裡的 package 時，像是 typescript-config，前面記得加上 @workspace，你會發現 echo-tutorial\packages\ui 底下的 package.json也是相同規則。
+在專案啟用之初，shadcn串建好後，預設的package分別是 eslint-config、typescript-config、ui，而 math 則是 turborepo 裡的範例。
+"devDependencies": {
+    "@workspace/typescript-config": "workspace:*",
+    "typescript": "latest"
+  }
+```
