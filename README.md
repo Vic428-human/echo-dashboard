@@ -1,8 +1,11 @@
 # 透過 pnpm dlx shadcn@latest init --monorepo + Turborepo 建置的理由
+進度: 5225
+##  前言
+> 本專案預先考量未來多人協作的場景，初步設想是做一個客服系統前台跟後台，但由於有另外進行交易所的專案，所以在製作客服後台到一個階段後，
+> 基於monorepo的特點，會同時把相同的部分clone一份給交易所使用，日後 /apps 路徑底下會另外區分。
 
-- 共用 UI 元件庫
-> 多個產品線（官網、後台、管理系統、客戶 dashboard）要共用同一套按鈕、表單、表格。
-> → packages/ui 就是中央元件庫，所有 app 都從 @workspace/ui import，改一次全站更新。
+- 共用 UI 庫
+> 多個產品線（官網、後台）要共用按鈕，packages/ui 就是中央元件庫，所有 app 都從 @workspace/ui 引用，多個產品線一次更新。
 
 - 專案規模會成長（中大型團隊）
 > 一開始：只有 apps/web（主要產品網站），後來加：apps/admin（後台管理系統），可能還加：apps/marketing（行銷落地頁
@@ -56,3 +59,34 @@ echo-tutorial\packages\math\package.json 引用了共用的 typescript-config pa
     "typescript": "latest"
   }
 ```
+
+# 為什麼前期先選用 Conve ?
+> Convex 取代了「後端基礎設施」。不需要另外架設 Go 服務器，因為 Convex 已經幫你做好了。
+> 業務邏輯demo階段暫時以 convex代勞，等核心功能定案後，再逐一轉成go+postgres。
+
+```
+在傳統架構中: 
+資料庫伺服器（Postgres）
+API 伺服器（Go）
+WebSocket 伺服器（即時推送）
+維運部署（K8s/EC2）
+
+在 Convex 架構中：
+資料庫：Convex 內建（基於 Postgres 但託管）
+API 邏輯：Convex Functions（你寫的 TypeScript 代碼）
+即時推送：Convex 內建（自動處理 WebSocket）
+維運部署：Convex 託管（無需管伺服器）
+```
+
+## convex 配置
+- [convex 配置參考來源](https://github.com/get-convex/turbo-expo-nextjs-clerk-convex-monorepo/tree/main)
+
+## 運行 backend 這個 package 的 script
+> convex 後端，以 package 型式放在 backend 路徑底下
+```
+// 下載開源 convex 添加在 backend 路徑
+pnpm -F backend add convex
+// 參考 「convex 配置參考來源」後，運行下方指令，會連接 convex dashboard，此專案名稱為 echo-tutorial，可以在 dashboard中找到，當時用 chXX24 那個帳號登入的
+pnpm -F backend run setup 
+```
+
