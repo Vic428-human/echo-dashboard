@@ -1,8 +1,8 @@
 # 透過 pnpm dlx shadcn@latest init --monorepo + Turborepo 建置的理由
+進度: 4114
 
-- 共用 UI 元件庫
-> 多個產品線（官網、後台、管理系統、客戶 dashboard）要共用同一套按鈕、表單、表格。
-> → packages/ui 就是中央元件庫，所有 app 都從 @workspace/ui import，改一次全站更新。
+- 共用 UI 庫
+> 多個產品線（官網、後台）要共用按鈕，packages/ui 就是中央元件庫，所有 app 都從 @workspace/ui 引用，多個產品線一次更新。
 
 - 專案規模會成長（中大型團隊）
 > 一開始：只有 apps/web（主要產品網站），後來加：apps/admin（後台管理系統），可能還加：apps/marketing（行銷落地頁
