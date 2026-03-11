@@ -56,3 +56,21 @@ echo-tutorial\packages\math\package.json 引用了共用的 typescript-config pa
     "typescript": "latest"
   }
 ```
+
+# 為什麼前期先選用 Convex
+> Convex 取代了「後端基礎設施」。不需要另外架設 Go 服務器，因為 Convex 已經幫你做好了，由於該專案中期會需要商業化，
+> 在雛型還沒出來之前，暫時不會找夥伴一起製作，先以 Convex 來擔任後端角色，而我先以前端角度規畫可能有的功能。
+
+```
+在傳統架構中: 
+資料庫伺服器（Postgres）
+API 伺服器（Go）
+WebSocket 伺服器（即時推送）
+維運部署（K8s/EC2）
+
+在 Convex 架構中：
+資料庫：Convex 內建（基於 Postgres 但託管）
+API 邏輯：Convex Functions（你寫的 TypeScript 代碼）
+即時推送：Convex 內建（自動處理 WebSocket）
+維運部署：Convex 託管（無需管伺服器）
+```
