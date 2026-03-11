@@ -1,4 +1,5 @@
 import { Button } from "@workspace/ui/components/button"
+import { add } from "@workspace/math/add"
 
 export default function Page() {
   return (
@@ -6,6 +7,7 @@ export default function Page() {
       <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
         <div>
           <h1 className="font-medium">Hello apps/widget</h1>
+           <p>{add(2, 8)}</p>
         
         </div>
     

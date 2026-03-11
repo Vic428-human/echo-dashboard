@@ -1,5 +1,6 @@
-import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
 import { add } from "@workspace/math/add"
+
 
 export default function Page() {
   return (
@@ -9,7 +10,7 @@ export default function Page() {
           <h1 className="font-medium">Hello apps/web</h1>
           <p>{add(2, 2)}</p>
         </div>
-
+        <Input/>
       </div>
     </div>
   )
