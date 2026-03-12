@@ -4,16 +4,15 @@ import { api } from '@workspace/backend/_generated/api'
 import { add } from "@workspace/math/add"
 
 export default function Page() {
+   const users = useQuery(api.users.getMany);
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Hello apps/widget</h1>
-           <p>{add(2, 8)}</p>
-        
-        </div>
-    
-      </div>
+   <div className="flex flex-col items-center justify-center min-h-svh">
+      <h1>Hello apps/widget</h1>
+      <ul>
+        {users?.map((user) => (
+          <li key={user._id}>{user.name}</li>
+        ))}
+      </ul>
     </div>
   )
 }
