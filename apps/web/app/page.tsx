@@ -10,7 +10,12 @@ export default function Page() {
 
   return (
     <div className="flex min-h-svh p-6">
-      <p>app/web</p>
+      <h1>Hello apps/web  </h1>
+      <ul>
+        {users?.map((user) => (
+          <li key={user._id}>{user.name}</li>
+        ))}
+      </ul>
     </div>
   )
 }
