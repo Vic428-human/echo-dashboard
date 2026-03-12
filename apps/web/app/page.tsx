@@ -9,8 +9,8 @@ export default function Page() {
   const users = useQuery(api.users.getMany);
 
   return (
-    <div className="flex min-h-svh p-6">
-      <h1>Hello apps/web  </h1>
+    <div className="flex flex-col items-center justify-center min-h-svh">
+      <h1>Hello apps/web</h1>
       <ul>
         {users?.map((user) => (
           <li key={user._id}>{user.name}</li>
